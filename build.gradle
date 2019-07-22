@@ -19,6 +19,9 @@ allprojects {
     repositories {
         google()
         jcenter()
+        mavenCentral()
+        //远程仓库，开源库需要
+        maven { url "https://jitpack.io" }
     }
 }
 
