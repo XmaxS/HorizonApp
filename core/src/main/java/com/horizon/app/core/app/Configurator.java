@@ -1,5 +1,6 @@
 package com.horizon.app.core.app;
 
+import android.app.Activity;
 import android.os.Handler;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
@@ -52,6 +53,11 @@ public final class Configurator {
             throw new NullPointerException(key.toString() + "IS NULL");
         }
         return (T) Horizon_Configs.get(key);
+    }
+
+    public final Configurator withActivity(Activity activity) {
+        Horizon_Configs.put(ConfigKeys.ACTIVITY, activity);
+        return this;
     }
 
 

@@ -1,11 +1,12 @@
 package com.horizon.app.horizonapp;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
@@ -14,12 +15,12 @@ import com.baidu.location.LocationClientOption;
 import com.baidu.mapapi.SDKInitializer;
 import com.baidu.mapapi.map.*;
 import com.baidu.mapapi.model.LatLng;
-import com.horizon.app.core.app.Horizon;
+import com.horizon.app.core.activities.StoreActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MapActivity extends AppCompatActivity {
+public class HorizonActivity extends AppCompatActivity {
 
     //坐标位置
     private LocationClient mLocationClient;
@@ -36,13 +37,11 @@ public class MapActivity extends AppCompatActivity {
         SDKInitializer.initialize(getApplicationContext());
         setContentView(R.layout.activity_main);
 
-        Horizon.init(this)
-                .configure();
-
         initMap();
         checkPermission();
 
     }
+
 
     //判断需要的权限是否全部征得用户同意，若不同意则退出程序
     @Override
@@ -71,19 +70,19 @@ public class MapActivity extends AppCompatActivity {
     //下列代码用于判断运行时的权限是否申请到，没申请到的放入集合内，后续一起申请
     private void checkPermission(){
         List<String> permissionList = new ArrayList<>();
-        if (ContextCompat.checkSelfPermission(MapActivity.this, Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED){
+        if (ContextCompat.checkSelfPermission(HorizonActivity.this, Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED){
             permissionList.add(Manifest.permission.ACCESS_FINE_LOCATION);
         }
-        if (ContextCompat.checkSelfPermission(MapActivity.this,Manifest.permission.READ_PHONE_STATE)!=PackageManager.PERMISSION_GRANTED){
+        if (ContextCompat.checkSelfPermission(HorizonActivity.this,Manifest.permission.READ_PHONE_STATE)!=PackageManager.PERMISSION_GRANTED){
             permissionList.add(Manifest.permission.READ_PHONE_STATE);
         }
-        if (ContextCompat.checkSelfPermission(MapActivity.this,Manifest.permission.WRITE_EXTERNAL_STORAGE)!=PackageManager.PERMISSION_GRANTED){
+        if (ContextCompat.checkSelfPermission(HorizonActivity.this,Manifest.permission.WRITE_EXTERNAL_STORAGE)!=PackageManager.PERMISSION_GRANTED){
             permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
         }
         if (!permissionList.isEmpty()){
             String[] permissions = permissionList.toArray(new String[permissionList.size()]);
             //一次性申请集合内的权限
-            ActivityCompat.requestPermissions(MapActivity.this,permissions,1);
+            ActivityCompat.requestPermissions(HorizonActivity.this,permissions,1);
         }else {
             //运行时权限全部满足，开始定位
             requsetLocation();
@@ -107,15 +106,15 @@ public class MapActivity extends AppCompatActivity {
 
                 Toast.makeText(getApplicationContext(),"On Map Click"
                         ,Toast.LENGTH_LONG).show();
-                
+
             }
 
             //对地图兴趣点点击事件
             @Override
             public boolean onMapPoiClick(MapPoi mapPoi) {
 
-                Toast.makeText(getApplicationContext(),"On Map Poi Click"
-                        ,Toast.LENGTH_LONG).show();
+                startActivity(new Intent(HorizonActivity.this,StoreActivity.class));
+                overridePendingTransition(R.layout.bottom_in,R.layout.bottom_silent);
 
                 return false;
             }

@@ -3,7 +3,7 @@ package com.horizon.app.core.app;
 import android.content.Context;
 import android.os.Handler;
 
-//用于调用Configurator
+//用于调用各种配置
 public final class Horizon {
     public static Configurator init(Context context){
         Configurator.getInstance()
