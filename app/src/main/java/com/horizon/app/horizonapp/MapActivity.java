@@ -20,7 +20,7 @@ import com.horizon.app.core.activities.StoreActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HorizonActivity extends AppCompatActivity {
+public class MapActivity extends AppCompatActivity {
 
     //坐标位置
     private LocationClient mLocationClient;
@@ -70,19 +70,19 @@ public class HorizonActivity extends AppCompatActivity {
     //下列代码用于判断运行时的权限是否申请到，没申请到的放入集合内，后续一起申请
     private void checkPermission(){
         List<String> permissionList = new ArrayList<>();
-        if (ContextCompat.checkSelfPermission(HorizonActivity.this, Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED){
+        if (ContextCompat.checkSelfPermission(MapActivity.this, Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED){
             permissionList.add(Manifest.permission.ACCESS_FINE_LOCATION);
         }
-        if (ContextCompat.checkSelfPermission(HorizonActivity.this,Manifest.permission.READ_PHONE_STATE)!=PackageManager.PERMISSION_GRANTED){
+        if (ContextCompat.checkSelfPermission(MapActivity.this,Manifest.permission.READ_PHONE_STATE)!=PackageManager.PERMISSION_GRANTED){
             permissionList.add(Manifest.permission.READ_PHONE_STATE);
         }
-        if (ContextCompat.checkSelfPermission(HorizonActivity.this,Manifest.permission.WRITE_EXTERNAL_STORAGE)!=PackageManager.PERMISSION_GRANTED){
+        if (ContextCompat.checkSelfPermission(MapActivity.this,Manifest.permission.WRITE_EXTERNAL_STORAGE)!=PackageManager.PERMISSION_GRANTED){
             permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
         }
         if (!permissionList.isEmpty()){
             String[] permissions = permissionList.toArray(new String[permissionList.size()]);
             //一次性申请集合内的权限
-            ActivityCompat.requestPermissions(HorizonActivity.this,permissions,1);
+            ActivityCompat.requestPermissions(MapActivity.this,permissions,1);
         }else {
             //运行时权限全部满足，开始定位
             requsetLocation();
@@ -113,7 +113,7 @@ public class HorizonActivity extends AppCompatActivity {
             @Override
             public boolean onMapPoiClick(MapPoi mapPoi) {
 
-                startActivity(new Intent(HorizonActivity.this,StoreActivity.class));
+                startActivity(new Intent(MapActivity.this, StoreActivity.class));
                 overridePendingTransition(R.layout.bottom_in,R.layout.bottom_silent);
 
                 return false;

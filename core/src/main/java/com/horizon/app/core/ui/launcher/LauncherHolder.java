@@ -1,4 +1,4 @@
-package com.horizon.app.core.maybeUse.launcher;
+package com.horizon.app.core.ui.launcher;
 
 import android.content.Context;
 import android.support.v7.widget.AppCompatImageView;

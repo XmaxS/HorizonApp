@@ -1,11 +1,11 @@
-package com.horizon.app.core.maybeUse.util;
+package com.horizon.app.core.util.storage;
 
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import com.horizon.app.core.app.Horizon;
 
 //数据持久化
-public class HorizonPreference {
+public final class HorizonPreference {
     /**
      * 提示:
      * Activity.getPreferences(int mode)生成 Activity名.xml 用于Activity内部存储
@@ -32,7 +32,6 @@ public class HorizonPreference {
     }
 
 
-
     public static void removeAppProfile() {
         getAppPreference()
                 .edit()
@@ -54,12 +53,6 @@ public class HorizonPreference {
                 .putBoolean(key, flag)
                 .apply();
     }
-    public static void setAppFlag(String key, int flag) {
-        getAppPreference()
-                .edit()
-                .putInt(key, flag)
-                .apply();
-    }
 
     public static boolean getAppFlag(String key) {
         return getAppPreference()
@@ -76,4 +69,5 @@ public class HorizonPreference {
     public static String getCustomAppProfile(String key) {
         return getAppPreference().getString(key, "");
     }
+
 }
