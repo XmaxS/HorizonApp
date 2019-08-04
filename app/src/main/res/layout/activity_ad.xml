@@ -11,8 +11,7 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/convenientBanner"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:canLoop="false">
+            android:layout_height="match_parent">
     </com.bigkoo.convenientbanner.ConvenientBanner>
 
     <!--app:canLoop:控制是否循环-->
