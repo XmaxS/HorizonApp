@@ -5,6 +5,8 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.WindowManager;
+import com.horizon.app.core.app.Horizon;
+import com.horizon.app.core.ui.loader.HorizonLoader;
 
 public class ADTActivity extends AppCompatActivity {
 

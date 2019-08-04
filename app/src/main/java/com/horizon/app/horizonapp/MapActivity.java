@@ -16,6 +16,7 @@ import com.baidu.mapapi.SDKInitializer;
 import com.baidu.mapapi.map.*;
 import com.baidu.mapapi.model.LatLng;
 import com.horizon.app.core.activities.StoreActivity;
+import com.horizon.app.core.ui.loader.HorizonLoader;
 
 import java.util.ArrayList;
 import java.util.List;

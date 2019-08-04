@@ -37,6 +37,14 @@ public final class Configurator {
         //Utils.init(Horizon.getApplicationContext());
     }
 
+
+    public final Configurator withLoaderDelayed(long delayed) {
+        Horizon_Configs.put(ConfigKeys.LOADER_DELAYED, delayed);
+        return this;
+    }
+
+
+
     //检查配置项是否完成,保证配置完成性和正确性
     private void checkConfiguration() {
         final boolean isReady = (boolean) Horizon_Configs.get(ConfigKeys.CONFIG_READY);

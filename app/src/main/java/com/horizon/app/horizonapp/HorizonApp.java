@@ -9,7 +9,9 @@ public class HorizonApp extends Application {
     public void onCreate() {
         super.onCreate();
 
+//        标准初始化模式
         Horizon.init(this)
+                .withLoaderDelayed(1000)
                 .configure();
 
     }
