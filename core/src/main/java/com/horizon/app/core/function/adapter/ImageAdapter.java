@@ -1,5 +1,6 @@
 package com.horizon.app.core.function.adapter;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import java.util.List;
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> {
 
     private List<Image> mImageList;
+    private Context mContext;
 
     //把要展示的数据传进来，并传给数据源mImageList
     public ImageAdapter(List<Image> imageList){
@@ -45,7 +47,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         //加载自定义的image_item布局文件
         View view = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.image_item,viewGroup,false);
+                .inflate(R.layout.recycler_adapter,viewGroup,false);
         final ViewHolder holder = new ViewHolder(view);
         //设置瀑布中的图片点击效果
         holder.imageImage.setOnClickListener(new View.OnClickListener() {
