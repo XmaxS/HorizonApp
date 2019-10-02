@@ -6,7 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.WindowManager;
 
-public class ADTActivity extends AppCompatActivity {
+/**
+ * 带时间的广告页面
+ */
+public class TimeAdActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +26,7 @@ public class ADTActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(ADTActivity.this,MapActivity.class));
+                startActivity(new Intent(TimeAdActivity.this,MapActivity.class));
                 finish();
             }
         },2000);

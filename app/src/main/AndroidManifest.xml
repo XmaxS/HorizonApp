@@ -32,7 +32,7 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".ADActivity">
+        <activity android:name=".RollAdActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -43,7 +43,7 @@
                 android:name=".MapActivity"
                 android:theme="@style/Theme.AppCompat.NoActionBar">
         </activity>
-        <activity android:name=".ADTActivity">
+        <activity android:name=".TimeAdActivity">
         </activity>
 
         <meta-data

@@ -11,7 +11,10 @@ import com.horizon.app.core.util.storage.HorizonPreference;
 
 import java.util.ArrayList;
 
-public class ADActivity extends AppCompatActivity implements OnItemClickListener {
+/**
+ * 左右翻页广告页面
+ */
+public class RollAdActivity extends AppCompatActivity implements OnItemClickListener {
 
 
 //  Banner控制器
@@ -62,7 +65,7 @@ public class ADActivity extends AppCompatActivity implements OnItemClickListener
     }
 
     private void activityStart(){
-        startActivity(new Intent(ADActivity.this,ADTActivity.class));
+        startActivity(new Intent(RollAdActivity.this, TimeAdActivity.class));
         finish();
     }
 }
