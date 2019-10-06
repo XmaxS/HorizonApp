@@ -7,9 +7,9 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import com.horizon.app.core.R;
 import com.horizon.app.core.function.adapter.ImageAdapter;
 import com.horizon.app.core.function.pojo.Image;
-
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class StoreActivity extends AppCompatActivity {
 
@@ -54,5 +54,6 @@ public class StoreActivity extends AppCompatActivity {
             imageList.add(boy2);
         }
     }
+
 
 }

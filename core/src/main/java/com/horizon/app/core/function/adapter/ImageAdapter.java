@@ -1,6 +1,5 @@
 package com.horizon.app.core.function.adapter;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,15 +10,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.horizon.app.core.R;
 import com.horizon.app.core.function.pojo.Image;
+import com.horizon.app.core.util.web.HttpUtil;
+import okhttp3.*;
 
+import java.io.IOException;
 import java.util.List;
+
 
 
 //瀑布效果的适配器
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> {
 
     private List<Image> mImageList;
-    private Context mContext;
+
+    private String responseData;
+
 
     //把要展示的数据传进来，并传给数据源mImageList
     public ImageAdapter(List<Image> imageList){
@@ -52,11 +57,12 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
         //设置瀑布中的图片点击效果
         holder.imageImage.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                int position = holder.getAdapterPosition();
-                Image image = mImageList.get(position);
-                Toast.makeText(v.getContext(),"点击图像:"+image.getName(),
+            public void onClick(final View v) {
+                getJsonWithOkHttp();
+                Toast.makeText(v.getContext(),"点击图像:"+responseData,
                         Toast.LENGTH_SHORT).show();
+
+
             }
         });
         //设置瀑布中的文字点击效果
@@ -90,5 +96,27 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
     public int getItemCount() {
         return mImageList.size();
     }
+
+
+    /**
+     * okHttp网络请求
+     */
+    private void getJsonWithOkHttp() {
+
+        HttpUtil httpUtil = new HttpUtil();
+        httpUtil.sendRequsetWithOkHttp("http://192.168.0.101:10086/api/item/store/query/1", new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                responseData = "失败！";
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                responseData = response.body().string();
+            }
+        });
+
+    }
+
 
 }
