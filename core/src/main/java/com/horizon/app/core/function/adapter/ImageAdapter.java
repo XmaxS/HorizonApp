@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.horizon.app.core.R;
 import com.horizon.app.core.function.pojo.Image;
+import com.horizon.app.core.ui.loader.HorizonLoader;
 import com.horizon.app.core.util.web.HttpUtil;
 import okhttp3.*;
 
@@ -58,9 +59,16 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
         holder.imageImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
+                HorizonLoader.showLoading(v.getContext());
+
                 getJsonWithOkHttp();
-                Toast.makeText(v.getContext(),"点击图像:"+responseData,
-                        Toast.LENGTH_SHORT).show();
+
+                if (responseData != null){
+
+                    Toast.makeText(v.getContext(),"点击图像:"+responseData,
+                            Toast.LENGTH_SHORT).show();
+                }
+
 
 
             }
@@ -104,7 +112,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
     private void getJsonWithOkHttp() {
 
         HttpUtil httpUtil = new HttpUtil();
-        httpUtil.sendRequsetWithOkHttp("http://192.168.0.101:10086/api/item/store/query/1", new Callback() {
+        httpUtil.sendRequsetWithOkHttp("http://www.baidu.com", new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 responseData = "失败！";
@@ -113,6 +121,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 responseData = response.body().string();
+                HorizonLoader.stopLoading();
             }
         });
 
