@@ -11,6 +11,9 @@
             android:id="@+id/bmapView"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:clickable="true"/>
+            android:clickable="true"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>

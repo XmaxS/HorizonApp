@@ -1,5 +1,7 @@
 package com.horizon.app.core.function.adapter;
 
+import android.content.Context;
+import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.horizon.app.core.R;
+import com.horizon.app.core.app.Horizon;
 import com.horizon.app.core.function.pojo.Image;
 import com.horizon.app.core.ui.loader.HorizonLoader;
 import com.horizon.app.core.util.web.HttpUtil;
@@ -63,14 +66,6 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
 
                 getJsonWithOkHttp();
 
-                if (responseData != null){
-
-                    Toast.makeText(v.getContext(),"点击图像:"+responseData,
-                            Toast.LENGTH_SHORT).show();
-                }
-
-
-
             }
         });
         //设置瀑布中的文字点击效果
@@ -122,6 +117,9 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
             public void onResponse(Call call, Response response) throws IOException {
                 responseData = response.body().string();
                 HorizonLoader.stopLoading();
+                Looper.prepare();
+                Toast.makeText(Horizon.getApplicationContext(),responseData,Toast.LENGTH_LONG).show();
+                Looper.loop();
             }
         });
 
