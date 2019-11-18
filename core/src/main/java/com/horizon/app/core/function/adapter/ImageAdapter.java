@@ -127,8 +127,8 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
                         Toast.makeText(Horizon.getApplicationContext(),responseData,Toast.LENGTH_LONG).show();
                         Looper.loop();
                     }
-                    case "Function1":{}
-                    case "Function2":{}
+                    case "Photo Album":HorizonLoader.stopLoading();
+                    case "Function2":HorizonLoader.stopLoading();
                 }
 
 

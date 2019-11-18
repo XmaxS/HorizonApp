@@ -40,14 +40,14 @@ public class StoreActivity extends AppCompatActivity {
 
     //要显示的图像初始化
     private void initImage(){
-        String pic_name1 = "Open Camera";
-        String pic_name2 = "Function1";
+        String openCamera = "Open Camera";
+        String photoAlbum = "Photo Album";
         String pic_name3 = "Function2";
 
         for (int i = 0;i<1;i++){
-            Image boy = new Image(pic_name1,R.drawable.boy_pic);
+            Image boy = new Image(openCamera,R.drawable.boy_pic);
             imageList.add(boy);
-            Image boy1 = new Image(pic_name2,R.drawable.boy_pic);
+            Image boy1 = new Image(photoAlbum,R.drawable.boy_pic);
             imageList.add(boy1);
             Image boy2 = new Image(pic_name3,R.drawable.boy_pic);
             imageList.add(boy2);
