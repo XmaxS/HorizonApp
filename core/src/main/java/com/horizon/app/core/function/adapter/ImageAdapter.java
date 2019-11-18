@@ -62,8 +62,10 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
             @Override
             public void onClick(final View v) {
                 HorizonLoader.showLoading(v.getContext());
+                int position = holder.getAdapterPosition();
+                Image image = mImageList.get(position);
 
-                getJsonWithOkHttp();
+                getJsonWithOkHttp(image);
 
             }
         });
@@ -103,7 +105,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
     /**
      * okHttp网络请求
      */
-    private void getJsonWithOkHttp() {
+    private void getJsonWithOkHttp(final Image image) {
 
         HttpUtil httpUtil = new HttpUtil();
         httpUtil.sendRequsetWithOkHttp("http://10.129.18.153:10086/api/item/store/query/7", new Callback() {
@@ -114,11 +116,20 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                responseData = response.body().string();
-                HorizonLoader.stopLoading();
-                Looper.prepare();
-                Toast.makeText(Horizon.getApplicationContext(),responseData,Toast.LENGTH_LONG).show();
-                Looper.loop();
+
+                String function = image.getName();
+
+                switch (function){
+                    case "Open Camera":{
+                        responseData = response.body().string();
+                        HorizonLoader.stopLoading();
+                        Looper.prepare();
+                        Toast.makeText(Horizon.getApplicationContext(),responseData,Toast.LENGTH_LONG).show();
+                        Looper.loop();
+                    }
+                }
+
+
             }
         });
 
