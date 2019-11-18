@@ -1,6 +1,5 @@
 package com.horizon.app.core.function.adapter;
 
-import android.content.Context;
 import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -107,7 +106,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
     private void getJsonWithOkHttp() {
 
         HttpUtil httpUtil = new HttpUtil();
-        httpUtil.sendRequsetWithOkHttp("http://www.baidu.com", new Callback() {
+        httpUtil.sendRequsetWithOkHttp("http://10.129.18.153:10086/api/item/store/query/7", new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 responseData = "失败！";
